@@ -72,7 +72,6 @@
         android:autofillHints="@string/imp_gasto"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:text="$200.00"
         android:textColorHint="#57000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

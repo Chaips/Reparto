@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 public class ApartadoEventosFragment extends Fragment {
     private ImageView combustible;
-    boolean isRotate=false;
+    boolean isRotate = false;
     private ListView eventosli;
     private static ListAdapterEventos adapter;
     ArrayList<Eventos> items;
@@ -49,16 +49,17 @@ public class ApartadoEventosFragment extends Fragment {
         ViewAnimation.init(rootView.findViewById(R.id.pernoctar));
         ViewAnimation.init(rootView.findViewById(R.id.otros));
         FloatingActionButton fab = rootView.findViewById(R.id.fabAdd);
+        eventosli = rootView.findViewById(R.id.eventoslist);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isRotate = ViewAnimation.rotateFab(v,!isRotate);
-                if(isRotate){
+                isRotate = ViewAnimation.rotateFab(v, !isRotate);
+                if (isRotate) {
                     ViewAnimation.showIn(rootView.findViewById(R.id.combustible));
                     ViewAnimation.showIn(rootView.findViewById(R.id.comidas));
                     ViewAnimation.showIn(rootView.findViewById(R.id.pernoctar));
                     ViewAnimation.showIn(rootView.findViewById(R.id.otros));
-                }else{
+                } else {
                     ViewAnimation.showOut(rootView.findViewById(R.id.combustible));
                     ViewAnimation.showOut(rootView.findViewById(R.id.comidas));
                     ViewAnimation.showOut(rootView.findViewById(R.id.pernoctar));
@@ -66,15 +67,15 @@ public class ApartadoEventosFragment extends Fragment {
                 }
             }
         });
-        Evento(rootView);
-        return rootView;
-    }
-    public void Evento(View v){
-        eventosli = v.findViewById(R.id.eventoslist);
+       /* Bundle b=getArguments();
         items = new ArrayList<>();
-        items.add(new Eventos("Combustible","142128",200));
+        double importes = b.getDouble("importes");
+        String folio = b.getString("folio");
+        String eventos = b.getString("eventos");
+        items.add(new Eventos(eventos,folio,importes));
         adapter = new ListAdapterEventos(items,getActivity().getApplicationContext());
-        eventosli.setAdapter(adapter);
+        eventosli.setAdapter(adapter);*/
+        return rootView;
     }
 
     public void Combustibles(View view){
