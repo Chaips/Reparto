@@ -37,7 +37,7 @@ public class InformacionFragment extends Fragment {
         Dato(rootView);
         return rootView;
     }
-    public void Dato(View v){
+    private void Dato(View v){
         listView = v.findViewById(R.id.recycler);
         items = new ArrayList<>();
         items.add(new Datos("SE0312","SERVITOALLA PETALO 3 X 2 60 HOJAS 12/2 UNI.",1));

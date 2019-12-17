@@ -36,7 +36,7 @@ public class ContactosFragment extends Fragment {
         Contacto(rootView);
         return rootView;
     }
-    public void Contacto(View v){
+    private void Contacto(View v){
         list = v.findViewById(R.id.list);
         items = new ArrayList<>();
         items.add(new Contactos("Correo","ana@gmail.com"));

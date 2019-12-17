@@ -71,7 +71,7 @@ public class MainFragment extends Fragment {
         Salida(rootView);
         return rootView;
     }
-    public void Lleg(final View view){
+    private void Lleg(final View view){
         lle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
         });
 
     }
-    public void Inicio(View v){
+    private void Inicio(View v){
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +113,7 @@ public class MainFragment extends Fragment {
             }
         });
     }
-    public void Fin(View v){
+    private void Fin(View v){
         fin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +128,7 @@ public class MainFragment extends Fragment {
             }
         });
     }
-    public  void Salida(View v){
+    private void Salida(View v){
         salida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

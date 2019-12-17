@@ -1,6 +1,7 @@
 package com.example.repartosahuayo.ui.Gasto;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -43,13 +45,12 @@ public class ApartadoEventosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_apartado_eventos, container, false);
-        Combustibles(rootView);
+        eventosli = rootView.findViewById(R.id.eventoslist);
         ViewAnimation.init(rootView.findViewById(R.id.combustible));
         ViewAnimation.init(rootView.findViewById(R.id.comidas));
         ViewAnimation.init(rootView.findViewById(R.id.pernoctar));
         ViewAnimation.init(rootView.findViewById(R.id.otros));
         FloatingActionButton fab = rootView.findViewById(R.id.fabAdd);
-        eventosli = rootView.findViewById(R.id.eventoslist);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,18 +68,23 @@ public class ApartadoEventosFragment extends Fragment {
                 }
             }
         });
-       /* Bundle b=getArguments();
-        items = new ArrayList<>();
-        double importes = b.getDouble("importes");
-        String folio = b.getString("folio");
-        String eventos = b.getString("eventos");
-        items.add(new Eventos(eventos,folio,importes));
-        adapter = new ListAdapterEventos(items,getActivity().getApplicationContext());
-        eventosli.setAdapter(adapter);*/
+        Combustibles(rootView);
+        //RecibirDatos();
         return rootView;
     }
 
-    public void Combustibles(View view){
+    private void RecibirDatos(){
+        Bundle bundle=this.getArguments();
+        items = new ArrayList<>();
+        double importes = bundle.getDouble("importes");
+        String folio = bundle.getString("folio");
+        String eventos = bundle.getString("eventos");
+        items.add(new Eventos(eventos,folio,importes));
+        adapter = new ListAdapterEventos(items,getActivity().getApplicationContext());
+        eventosli.setAdapter(adapter);
+    }
+
+    private void Combustibles(View view){
         combustible = view.findViewById(R.id.combustible);
         combustible.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,5 +97,4 @@ public class ApartadoEventosFragment extends Fragment {
             }
         });
     }
-
 }

@@ -1,29 +1,32 @@
 package com.example.repartosahuayo.ui.Gasto;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.repartosahuayo.Adapter.Eventos;
 import com.example.repartosahuayo.Adapter.ListAdapterEventos;
 import com.example.repartosahuayo.R;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 /**
@@ -36,6 +39,7 @@ public class Combustible extends Fragment {
     private Button terminar_combustible;
     private ImageView combustibleimage;
     private EditText importe;
+    private Spinner  tipodegasto;
 
 
     public Combustible() {
@@ -47,56 +51,84 @@ public class Combustible extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView=inflater.inflate(R.layout.fragment_combustible, container, false);
-        Chronometer simpleChronometer = (Chronometer)rootView.findViewById(R.id.simpleChronometer); // initiate a chronometer
+        Chronometer simpleChronometer = rootView.findViewById(R.id.simpleChronometer); // initiate a chronometer
         simpleChronometer.start();
         terminar_combustible = rootView.findViewById(R.id.button3);
         importe = rootView.findViewById(R.id.editText);
-        //Mensaje(rootView),
+        tipodegasto = rootView.findViewById(R.id.spinner);
         EventoCombustible(rootView);
+        Spinner();
+        Back(rootView);
         return rootView;
     }
 
-    public void EventoCombustible(View v){
+    private void EventoCombustible(View v){
         terminar_combustible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ApartadoEventosFragment apartadoEventosFragment = new ApartadoEventosFragment();
                 Bundle bundle = new Bundle();
-                double importes=Double.parseDouble(importe.getText().toString());
+                String etimportes=importe.getText().toString();
                 String folio="142128";
                 String eventos="Combustible";
-                bundle.putDouble("importes",importes);
-                bundle.putString("folio",folio);
-                bundle.putString("eventos",eventos);
-                apartadoEventosFragment.setArguments(bundle);
+                String selection = tipodegasto.getSelectedItem().toString();
+                if(selection.equals("Seleccione")){
+                    tipodegasto.setBackgroundResource(R.drawable.borde);
+                    Toast.makeText(getActivity(),"Opcion no valida debe elegir una opcion diferente de Seleccione",Toast.LENGTH_LONG).show();
+                }else if("".equals(etimportes)) {
+                    importe.setBackgroundResource(R.drawable.borde);
+                    Toast.makeText(getActivity(),"No puede estar vacio el importe",Toast.LENGTH_LONG).show();
+                }else{
+
+                    double importes = Double.valueOf(etimportes);
+                    NumberFormat formatoimporte = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
+                    String importesmoneda = formatoimporte.format(importes);
+                    //bundle.putDouble("importes",importesmoneda);
+                    bundle.putString("folio", folio);
+                    bundle.putString("eventos", eventos);
+                    apartadoEventosFragment.setArguments(bundle);
+                    Toast.makeText(getActivity(),"El importe es de: "+importesmoneda,Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
-    /*public Dialog onCreateDialog(View savedInstanceState){
-         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-         builder.setMessage(R.string.dialogo).setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int which) {
-                //DAR CLIK EN EL BOTON
-            }
-        });
-        builder.setMessage();
-        return builder.create();
-    }*/
 
-    public void Mensaje(View v){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
-        builder.setMessage("DIALOGO")
-                .setTitle("DIALOG")
-                .setCancelable(false)
-                .setNeutralButton("Aceptar",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-        AlertDialog alert = builder.create();
+    private void Mensaje(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("No puede regresar hasta que termine el evento")
+                .setTitle("DIALOG");
+        final AlertDialog alert = builder.create();
+        alert.setCanceledOnTouchOutside(false);
         alert.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(null != alert && alert.isShowing()) alert.dismiss();
+            }
+        }, 5000);
     }
 
+    private void Spinner(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.factura,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipodegasto.setAdapter(adapter);
+    }
+
+    private void Back(View view) {
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if(keyCode == KeyEvent.KEYCODE_BACK) {
+                    Mensaje();
+                    return true;
+                }
+                return false;
+            }
+        } );
+    }
 }
