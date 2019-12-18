@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -74,20 +75,20 @@ public class ApartadoEventosFragment extends Fragment {
             }
         });
         Combustibles(rootView);
-        //RecibirDatos();
         return rootView;
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
         super.onActivityResult(requestCode, resultCode,data);
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             double importe = data.getDoubleExtra("importes",0);
             String file = data.getStringExtra("folio");
-            String event = data.getStringExtra("evento");
+            String event = data.getStringExtra("eventos");
+            items = new ArrayList<>();
             items.add(new Eventos(event,file,importe));
+            adapter = new ListAdapterEventos(items, getActivity().getApplicationContext());
+            eventosli.setAdapter(adapter);
             Timber.d(TAG,"OnActivityResult: "+importe);
-
         }
     }
 
@@ -98,6 +99,7 @@ public class ApartadoEventosFragment extends Fragment {
             public void onClick(View v) {
                 Fragment conta = new Combustible();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                conta.setTargetFragment(ApartadoEventosFragment.this,REQUEST_CODE);
                 transaction.replace(R.id.nav_host_fragment, conta);
                 transaction.addToBackStack(null);
                 transaction.commit();

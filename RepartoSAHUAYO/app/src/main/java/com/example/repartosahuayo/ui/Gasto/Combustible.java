@@ -86,8 +86,8 @@ public class Combustible extends Fragment {
                     String importesmoneda = formatoimporte.format(importes);
                     getTargetFragment().onActivityResult(getTargetRequestCode(),
                             Activity.RESULT_OK,
-                            new Intent().putExtra("importes",importes).
-                            putExtra("folio",folio).putExtra("eventos",eventos));
+                            new Intent().putExtra("eventos",eventos).
+                            putExtra("folio",folio).putExtra("importes",importes));
                     getFragmentManager().popBackStack();
                     Toast.makeText(getActivity(),"El importe es de: "+importesmoneda,Toast.LENGTH_LONG).show();
                 }
