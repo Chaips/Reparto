@@ -1,8 +1,11 @@
 package com.example.repartosahuayo.ui.Gasto;
 
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -66,8 +69,6 @@ public class Combustible extends Fragment {
         terminar_combustible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApartadoEventosFragment apartadoEventosFragment = new ApartadoEventosFragment();
-                Bundle bundle = new Bundle();
                 String etimportes=importe.getText().toString();
                 String folio="142128";
                 String eventos="Combustible";
@@ -83,10 +84,11 @@ public class Combustible extends Fragment {
                     double importes = Double.valueOf(etimportes);
                     NumberFormat formatoimporte = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
                     String importesmoneda = formatoimporte.format(importes);
-                    //bundle.putDouble("importes",importesmoneda);
-                    bundle.putString("folio", folio);
-                    bundle.putString("eventos", eventos);
-                    apartadoEventosFragment.setArguments(bundle);
+                    getTargetFragment().onActivityResult(getTargetRequestCode(),
+                            Activity.RESULT_OK,
+                            new Intent().putExtra("importes",importes).
+                            putExtra("folio",folio).putExtra("eventos",eventos));
+                    getFragmentManager().popBackStack();
                     Toast.makeText(getActivity(),"El importe es de: "+importesmoneda,Toast.LENGTH_LONG).show();
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.repartosahuayo.ui.Gasto;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +26,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import timber.log.Timber;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -34,6 +37,8 @@ public class ApartadoEventosFragment extends Fragment {
     private ListView eventosli;
     private static ListAdapterEventos adapter;
     ArrayList<Eventos> items;
+    private static int REQUEST_CODE = 123;
+    private static final String TAG = ApartadoEventosFragment.class.getSimpleName();
 
     public ApartadoEventosFragment() {
         // Required empty public constructor
@@ -73,15 +78,17 @@ public class ApartadoEventosFragment extends Fragment {
         return rootView;
     }
 
-    private void RecibirDatos(){
-        Bundle bundle=this.getArguments();
-        items = new ArrayList<>();
-        double importes = bundle.getDouble("importes");
-        String folio = bundle.getString("folio");
-        String eventos = bundle.getString("eventos");
-        items.add(new Eventos(eventos,folio,importes));
-        adapter = new ListAdapterEventos(items,getActivity().getApplicationContext());
-        eventosli.setAdapter(adapter);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode,data);
+        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
+            double importe = data.getDoubleExtra("importes",0);
+            String file = data.getStringExtra("folio");
+            String event = data.getStringExtra("evento");
+            items.add(new Eventos(event,file,importe));
+            Timber.d(TAG,"OnActivityResult: "+importe);
+
+        }
     }
 
     private void Combustibles(View view){
