@@ -74,7 +74,9 @@ public class ApartadoEventosFragment extends Fragment {
                 }
             }
         });
+        items = new ArrayList<>();
         Combustibles(rootView);
+
         return rootView;
     }
     @Override
@@ -84,9 +86,8 @@ public class ApartadoEventosFragment extends Fragment {
             double importe = data.getDoubleExtra("importes",0);
             String file = data.getStringExtra("folio");
             String event = data.getStringExtra("eventos");
-            items = new ArrayList<>();
             items.add(new Eventos(event,file,importe));
-            adapter = new ListAdapterEventos(items, getActivity().getApplicationContext());
+            adapter = new ListAdapterEventos(items, getActivity(),R.layout.eventos);
             eventosli.setAdapter(adapter);
             Timber.d(TAG,"OnActivityResult: "+importe);
         }
