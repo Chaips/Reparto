@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class ApartadoEventosFragment extends Fragment {
     private ImageView combustible;
     boolean isRotate = false;
     private ListView eventosli;
-    private static ListAdapterEventos adapter;
+    private ListAdapterEventos adapter;
     ArrayList<Eventos> items;
     private static int REQUEST_CODE = 123;
     private static final String TAG = ApartadoEventosFragment.class.getSimpleName();
@@ -76,19 +77,20 @@ public class ApartadoEventosFragment extends Fragment {
         });
         items = new ArrayList<>();
         Combustibles(rootView);
-
         return rootView;
     }
     @Override
-    public void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
+    public void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){ ;
         super.onActivityResult(requestCode, resultCode,data);
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             double importe = data.getDoubleExtra("importes",0);
             String file = data.getStringExtra("folio");
             String event = data.getStringExtra("eventos");
             items.add(new Eventos(event,file,importe));
-            adapter = new ListAdapterEventos(items, getActivity(),R.layout.eventos);
+            items.add(new Eventos("fedf","saz",12.42));
+            adapter = new ListAdapterEventos(items,getActivity());
             eventosli.setAdapter(adapter);
+            Toast.makeText(getActivity()," "+importe+" "+file+ " "+event,Toast.LENGTH_LONG).show();
             Timber.d(TAG,"OnActivityResult: "+importe);
         }
     }

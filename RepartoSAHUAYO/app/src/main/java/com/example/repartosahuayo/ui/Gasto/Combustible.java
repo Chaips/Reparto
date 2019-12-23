@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ import com.example.repartosahuayo.Adapter.Eventos;
 import com.example.repartosahuayo.Adapter.ListAdapterEventos;
 import com.example.repartosahuayo.R;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -59,6 +62,7 @@ public class Combustible extends Fragment {
         terminar_combustible = rootView.findViewById(R.id.button3);
         importe = rootView.findViewById(R.id.editText);
         tipodegasto = rootView.findViewById(R.id.spinner);
+        importe.addTextChangedListener(onTextChangedListener());
         EventoCombustible(rootView);
         Spinner();
         Back(rootView);
@@ -69,7 +73,7 @@ public class Combustible extends Fragment {
         terminar_combustible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String etimportes=importe.getText().toString();
+                String etimportes=importe.getText().toString().replaceAll(",", "");
                 String folio="142128";
                 String eventos="Combustible";
                 String selection = tipodegasto.getSelectedItem().toString();
@@ -89,7 +93,7 @@ public class Combustible extends Fragment {
                             new Intent().putExtra("eventos",eventos).
                             putExtra("folio",folio).putExtra("importes",importes));
                     getFragmentManager().popBackStack();
-                    Toast.makeText(getActivity(),"El importe es de: "+importesmoneda,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(),"El importe es de: "+importesmoneda,Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -132,5 +136,47 @@ public class Combustible extends Fragment {
                 return false;
             }
         } );
+    }
+
+
+    private TextWatcher onTextChangedListener() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int inicio, int valor, int antes) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int inicio, int antes, int valor) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                importe.removeTextChangedListener(this);
+
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getCurrencyInstance(new Locale("es","MX"));
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    importe.setText(formattedString);
+                    importe.setSelection(importe.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                importe.addTextChangedListener(this);
+            }
+        };
     }
 }
