@@ -49,7 +49,7 @@ public class MainFragment extends Fragment {
         Salida=rootView.findViewById(R.id.textView17);
         viewPager = rootView.findViewById(R.id.viewpager);
         tabLayout = rootView.findViewById(R.id.tabs);
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        /*tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
@@ -62,7 +62,18 @@ public class MainFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-        });
+        });*/
+        adapter = new TabAdapter(getChildFragmentManager());
+        adapter.addFragment(new Llegada2Fragment(), "Llegada");
+        adapter.addFragment(new ContactosFragment(), "Contactos");
+        adapter.addFragment(new InformacionFragment(), "Detalles");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        Llegada2Fragment vista1Fragment = new Llegada2Fragment();
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.viewpager, vista1Fragment);
+        fragmentTransaction.commit();
 
 
         Lleg(rootView);
@@ -83,17 +94,6 @@ public class MainFragment extends Fragment {
                 fin.setImageResource(R.mipmap.delivery3);
                 Salida.setTextColor(Color.parseColor("#17134b"));
                 salida.setImageResource(R.mipmap.delivery4);
-                adapter = new TabAdapter(getChildFragmentManager());
-                adapter.addFragment(new Llegada2Fragment(), "Llegada");
-                adapter.addFragment(new ContactosFragment(), "Contactos");
-                adapter.addFragment(new InformacionFragment(), "Detalles");
-                viewPager.setAdapter(adapter);
-                tabLayout.setupWithViewPager(viewPager);
-                Llegada2Fragment vista1Fragment = new Llegada2Fragment();
-                FragmentManager fragmentManager = getChildFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.viewpager, vista1Fragment);
-                fragmentTransaction.commit();
             }
         });
 

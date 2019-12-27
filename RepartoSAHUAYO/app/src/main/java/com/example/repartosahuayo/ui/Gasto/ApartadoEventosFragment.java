@@ -34,7 +34,7 @@ import timber.log.Timber;
  * A simple {@link Fragment} subclass.
  */
 public class ApartadoEventosFragment extends Fragment {
-    private ImageView combustible;
+    private ImageView combustible,comidas,pernoctar;
     boolean isRotate = false;
     private ListView eventosli;
     private ListAdapterEventos adapter;
@@ -77,6 +77,8 @@ public class ApartadoEventosFragment extends Fragment {
         });
         items = new ArrayList<>();
         Combustibles(rootView);
+        Comida(rootView);
+        Pernoctar(rootView);
         return rootView;
     }
     @Override
@@ -104,6 +106,36 @@ public class ApartadoEventosFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 conta.setTargetFragment(ApartadoEventosFragment.this,REQUEST_CODE);
                 transaction.replace(R.id.nav_host_fragment, conta);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+    }
+
+    private void Comida(View view){
+        comidas = view.findViewById(R.id.comidas);
+        comidas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment com = new ComidasFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                com.setTargetFragment(ApartadoEventosFragment.this, REQUEST_CODE);
+                transaction.replace(R.id.nav_host_fragment, com);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+    }
+
+    private void Pernoctar(View view){
+        pernoctar = view.findViewById(R.id.pernoctar);
+        pernoctar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment per = new PernoctarFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                per.setTargetFragment(ApartadoEventosFragment.this, REQUEST_CODE);
+                transaction.replace(R.id.nav_host_fragment, per);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
