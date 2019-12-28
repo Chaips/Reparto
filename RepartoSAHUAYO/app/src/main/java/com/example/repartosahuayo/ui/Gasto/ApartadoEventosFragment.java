@@ -34,7 +34,7 @@ import timber.log.Timber;
  * A simple {@link Fragment} subclass.
  */
 public class ApartadoEventosFragment extends Fragment {
-    private ImageView combustible,comidas,pernoctar;
+    private ImageView combustible,comidas,pernoctar,otro_gasto;
     boolean isRotate = false;
     private ListView eventosli;
     private ListAdapterEventos adapter;
@@ -79,6 +79,7 @@ public class ApartadoEventosFragment extends Fragment {
         Combustibles(rootView);
         Comida(rootView);
         Pernoctar(rootView);
+        OtrosGastos(rootView);
         return rootView;
     }
     @Override
@@ -136,6 +137,21 @@ public class ApartadoEventosFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 per.setTargetFragment(ApartadoEventosFragment.this, REQUEST_CODE);
                 transaction.replace(R.id.nav_host_fragment, per);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+    }
+
+    private void OtrosGastos(View view){
+        otro_gasto = view.findViewById(R.id.otros);
+        otro_gasto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment otros =new Otros_GastosFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                otros.setTargetFragment(ApartadoEventosFragment.this, REQUEST_CODE);
+                transaction.replace(R.id.nav_host_fragment, otros);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

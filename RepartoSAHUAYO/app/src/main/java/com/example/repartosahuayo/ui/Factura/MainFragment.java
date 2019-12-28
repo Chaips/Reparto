@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +18,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.repartosahuayo.R;
 import com.example.repartosahuayo.TabAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,6 +99,10 @@ public class MainFragment extends Fragment {
                 fin.setImageResource(R.mipmap.delivery3);
                 Salida.setTextColor(Color.parseColor("#17134b"));
                 salida.setImageResource(R.mipmap.delivery4);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date = new Date();
+                String hora_llegada = dateFormat.format(date);
+                Toast.makeText(getActivity(),"Su hora de llegada fue: " +hora_llegada,Toast.LENGTH_LONG).show();
             }
         });
 
