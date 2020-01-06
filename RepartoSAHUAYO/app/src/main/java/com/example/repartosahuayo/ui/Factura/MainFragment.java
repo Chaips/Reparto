@@ -19,6 +19,7 @@ import com.example.repartosahuayo.R;
 import com.example.repartosahuayo.TabAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -32,6 +33,8 @@ public class MainFragment extends Fragment {
     private ViewPager viewPager;
     private ImageView lle,inicio,fin,salida;
     private TextView Llegada,Inicio,Fin,Salida;
+    Date date = new Date();
+    SimpleDateFormat dateFormat;
 
 
     public MainFragment() {
@@ -54,20 +57,6 @@ public class MainFragment extends Fragment {
         Salida=rootView.findViewById(R.id.textView17);
         viewPager = rootView.findViewById(R.id.viewpager);
         tabLayout = rootView.findViewById(R.id.tabs);
-        /*tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });*/
         adapter = new TabAdapter(getChildFragmentManager());
         adapter.addFragment(new Llegada2Fragment(), "Llegada");
         adapter.addFragment(new ContactosFragment(), "Contactos");
@@ -79,8 +68,6 @@ public class MainFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.viewpager, vista1Fragment);
         fragmentTransaction.commit();
-
-
         Lleg(rootView);
         Inicio(rootView);
         Fin(rootView);
@@ -99,8 +86,7 @@ public class MainFragment extends Fragment {
                 fin.setImageResource(R.mipmap.delivery3);
                 Salida.setTextColor(Color.parseColor("#17134b"));
                 salida.setImageResource(R.mipmap.delivery4);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                Date date = new Date();
+                dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
                 String hora_llegada = dateFormat.format(date);
                 Toast.makeText(getActivity(),"Su hora de llegada fue: " +hora_llegada,Toast.LENGTH_LONG).show();
             }
@@ -119,6 +105,9 @@ public class MainFragment extends Fragment {
                 fin.setImageResource(R.mipmap.delivery3);
                 Salida.setTextColor(Color.parseColor("#17134b"));
                 salida.setImageResource(R.mipmap.delivery4);
+                dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                String hora_inicio = dateFormat.format(date);
+                Toast.makeText(getActivity(),"Su hora de Inicio es: " + hora_inicio,Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -134,6 +123,9 @@ public class MainFragment extends Fragment {
                 fin.setImageResource(R.mipmap.deliveryred3);
                 Salida.setTextColor(Color.parseColor("#17134b"));
                 salida.setImageResource(R.mipmap.delivery4);
+                dateFormat = new SimpleDateFormat("HH:mm:ss",Locale.getDefault());
+                String hora_final = dateFormat.format(date);
+                Toast.makeText(getActivity(),"Su hora de fin es: " + hora_final, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -149,6 +141,9 @@ public class MainFragment extends Fragment {
                 fin.setImageResource(R.mipmap.delivery3);
                 Salida.setTextColor(Color.parseColor("#ed1c24"));
                 salida.setImageResource(R.mipmap.deliveryredp4);
+                dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                String hora_salida = dateFormat.format(date);
+                Toast.makeText(getActivity(),"Su hora de salida es: " + hora_salida, Toast.LENGTH_LONG).show();
             }
         });
     }

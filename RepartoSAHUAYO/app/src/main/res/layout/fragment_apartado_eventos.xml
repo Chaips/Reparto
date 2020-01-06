@@ -51,30 +51,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@mipmap/otrosgastos"
-            app:fabSize="mini"
-            app:maxImageSize="41dp" />
+            app:fabSize="auto"
+            app:maxImageSize="58dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/pernoctar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@mipmap/pernoctar"
-            app:fabSize="mini"
-            app:maxImageSize="41dp" />
+            app:fabSize="auto"
+            app:maxImageSize="60dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/comidas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@mipmap/comida"
-            app:fabSize="mini"
-            app:maxImageSize="41dp" />
+            app:fabSize="auto"
+            app:maxImageSize="57dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/combustible"
@@ -82,8 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@mipmap/combustible"
-            app:fabSize="mini"
-            app:maxImageSize="41dp" />
+            app:fabSize="auto"
+            app:maxImageSize="58dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
