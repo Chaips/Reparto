@@ -1,4 +1,4 @@
-package com.example.repartosahuayo.ui.Gasto;
+package com.example.repartosahuayo.ui.Evento;
 
 
 import android.app.Activity;

@@ -13,14 +13,14 @@
         <TextView
             android:id="@+id/textView5"
             style="@style/titulo"
-            android:layout_width="wrap_content"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="133dp"
+            android:layout_marginStart="113dp"
             android:layout_marginLeft="133dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="133dp"
             android:layout_marginRight="133dp"
-            android:text="Maniobras   "
+            android:text="Maniobras"
             android:textColor="@color/colorAccent"
             android:textSize="24sp" />
     </LinearLayout>
@@ -33,11 +33,11 @@
             android:id="@+id/imageView2"
             android:layout_width="213dp"
             android:layout_height="238dp"
-            android:layout_marginStart="99dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginEnd="80dp"
             android:layout_marginRight="99dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/img_combust"
             android:src="@mipmap/carrito13" />
     </LinearLayout>
@@ -77,7 +77,6 @@
             android:autofillHints="@string/imp_gasto"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:text="$200.00"
             android:textColorHighlight="@color/colorPrimary"
             android:textColorHint="@color/colorPrimaryDark"
             android:textColorLink="@color/colorAccent"
@@ -104,9 +103,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <EditText
+        <Spinner
             android:id="@+id/editText8"
-            android:layout_width="320dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="385dp"
             android:layout_marginLeft="15dp"
@@ -124,48 +123,48 @@
 
         <TextView
             android:id="@+id/textView12"
-            style="@style/texto2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="430dp"
-            android:layout_marginBottom="163dp"
+            android:layout_marginTop="410dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            style="@style/texto2"
             android:text="@string/folio"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp" />
+            android:textColor="@color/colorAccent"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/button4"
-        style="@style/MyTheme"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="74dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="435dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="183931"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="278dp"
-        android:layout_marginLeft="278dp"
-        android:layout_marginTop="556dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginBottom="55dp"
-        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
+    <Button
+        android:id="@+id/button4"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginLeft="240dp"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/boton_terminar"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorLink="@color/colorAccent"
-        android:textCursorDrawable="@color/colorGrayDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText9"
-        android:layout_width="74dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="183931"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
+        android:textColor="#D9D9E4"
+        android:textColorHighlight="#8FF1D4" />
+    </LinearLayout>
 </RelativeLayout>

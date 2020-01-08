@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,14 +15,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.repartosahuayo.Adapter.Contactos;
-import com.example.repartosahuayo.Adapter.Datos;
 import com.example.repartosahuayo.Adapter.Eventos;
-import com.example.repartosahuayo.Adapter.ListAdapterContactos;
-import com.example.repartosahuayo.Adapter.ListAdapterDetalles;
 import com.example.repartosahuayo.Adapter.ListAdapterEventos;
 import com.example.repartosahuayo.Animation.ViewAnimation;
 import com.example.repartosahuayo.R;
+import com.example.repartosahuayo.ui.Evento.Combustible;
+import com.example.repartosahuayo.ui.Evento.ComidasFragment;
+import com.example.repartosahuayo.ui.Evento.Otros_GastosFragment;
+import com.example.repartosahuayo.ui.Evento.PernoctarFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

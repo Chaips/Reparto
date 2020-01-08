@@ -164,7 +164,10 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="65dp">
-        <!--android:layout_marginTop="677dp">-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
@@ -177,16 +180,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="135dp"
+            android:layout_marginLeft="20dp"
             android:text="COBRANZA"/>
         <Button
             android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="265dp"
+            android:layout_marginLeft="20dp"
             android:text="ACEPTAR"/>
-
-
+        </TableRow>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
