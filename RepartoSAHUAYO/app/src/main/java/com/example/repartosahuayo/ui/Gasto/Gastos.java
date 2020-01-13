@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * A simple {@link Fragment} subclass.
  */
 public class Gastos extends Fragment {
-    private ImageView maniobra,casetas;
+    private ImageView maniobra,casetas,flete;
     boolean isRotate = false;
 
 
@@ -62,10 +62,11 @@ public class Gastos extends Fragment {
         });
         Maniobras(rootView);
         Casetas(rootView);
+        Fletes(rootView);
         return rootView;
     }
 
-    public void Maniobras(View view){
+    private void Maniobras(View view){
         maniobra = view.findViewById(R.id.maniobras);
         maniobra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,4 +93,17 @@ public class Gastos extends Fragment {
         });
     }
 
+    private void Fletes(View view){
+        flete = view.findViewById(R.id.fletes);
+        flete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fle = new FletesFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment, fle);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+    }
 }
