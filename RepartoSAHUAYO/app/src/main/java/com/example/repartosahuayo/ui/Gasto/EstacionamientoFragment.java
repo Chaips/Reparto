@@ -28,16 +28,16 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Maniobras extends Fragment {
-    private Button terminar_maniobra;
+public class EstacionamientoFragment extends Fragment {
+    private Button terminar_estacionamiento;
     private EditText importe_gasto;
     private Spinner tipodegasto;
 
-    public Maniobras() {
+
+    public EstacionamientoFragment() {
         // Required empty public constructor
     }
 
@@ -46,10 +46,10 @@ public class Maniobras extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_maniobras, container, false);
-        terminar_maniobra = rootView.findViewById(R.id.button4);
-        importe_gasto = rootView.findViewById(R.id.editText7);
-        tipodegasto = rootView.findViewById(R.id.spinner_maniobras);
+        View rootView = inflater.inflate(R.layout.fragment_estacionamiento, container, false);
+        terminar_estacionamiento = rootView.findViewById(R.id.terminar_estacionamiento);
+        importe_gasto = rootView.findViewById(R.id.importe_estacionamiento);
+        tipodegasto = rootView.findViewById(R.id.spinner_estacionamiento);
         GastoManiobras(rootView);
         Spinner();
         Back(rootView);
@@ -59,7 +59,7 @@ public class Maniobras extends Fragment {
 
 
     private void GastoManiobras(View v){
-        terminar_maniobra.setOnClickListener(new View.OnClickListener() {
+        terminar_estacionamiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String etimportes=importe_gasto.getText().toString().replaceAll(",", "");
@@ -164,5 +164,4 @@ public class Maniobras extends Fragment {
             }
         };
     }
-
 }

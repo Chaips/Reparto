@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Gasto.FletesFragment">
+    tools:context=".ui.Gasto.EstacionamientoFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -14,10 +14,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="60dp"
             android:layout_marginLeft="140dp"
             style="@style/titulo"
-            android:text="Fletes" />
+            android:text="Estacionamiento" />
     </LinearLayout>
 
     <LinearLayout
@@ -30,7 +30,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="90dp"
             android:layout_marginStart="90dp"
-            android:src="@mipmap/fletes" />
+            android:src="@mipmap/estacionamiento" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,12 +54,12 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/importe_fletes"
+            android:id="@+id/importe_estacionamiento"
             android:layout_width="322dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:layout_marginTop="285dp"
+            android:layout_marginTop="275dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp" />
     </LinearLayout>
@@ -71,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="335dp"
+            android:layout_marginTop="325dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             style="@style/texto2"
@@ -85,10 +85,10 @@
         android:layout_height="wrap_content">
 
         <Spinner
-            android:id="@+id/spinner_fletes"
+            android:id="@+id/spinner_estacionamiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
+            android:layout_marginTop="355dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp" />
     </LinearLayout>
@@ -100,7 +100,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="390dp"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             style="@style/texto2"
@@ -111,11 +111,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="425dp"
+            android:layout_marginTop="420dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             android:ems="10"
@@ -126,10 +125,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true">
 
         <Button
-            android:id="@+id/terminar_fletes"
+            android:id="@+id/terminar_estacionamiento"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
